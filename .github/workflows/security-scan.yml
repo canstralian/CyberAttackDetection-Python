@@ -1,0 +1,20 @@
+name: Security Scan
+
+on: [push, pull_request]
+
+jobs:
+  trivy_scan:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@v0.2.2
+      with:
+        scan-type: 'fs'
+        output: 'trivy-report.json'
+    - name: Upload Trivy report
+      uses: actions/upload-artifact@v3
+      with:
+        name: trivy-report
+        path: trivy-report.json
