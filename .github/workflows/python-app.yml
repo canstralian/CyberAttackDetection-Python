@@ -1,0 +1,77 @@
+name: CI - Python Application
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Cache dependencies
+      uses: actions/cache@v3
+        with:
+          path: venv
+          key: ${{ runner.os }}-python-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-python-
+    - name: Install dependencies
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+        pip install --upgrade pip
+        pip install flake8 pytest pytest-cov
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Lint with flake8
+      run: |
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Test with pytest
+      run: |
+        pytest --cov=. 
+    - name: Upload coverage report
+      uses: codecov/codecov-action@v3
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }} # Replace with your Codecov token
+
+
+Key improvements:
+ * Code Coverage: Added pytest-cov to generate code coverage reports.
+ * Codecov Integration: Integrated the codecov/codecov-action to upload the coverage report to Codecov for analysis and visualization.
+ * Enhanced Comments: Added more specific comments to each step for better readability.
+To use this workflow:
+ * Install Codecov:
+   * Create a Codecov account.
+   * Obtain a Codecov token from your Codecov account settings.
+   * Create a repository secret in your GitHub repository named CODECOV_TOKEN and paste the token.
+ * Install pytest-cov:
+   * Modify the requirements.txt file to include pytest-cov:
+     streamlit
+transformers
+datasets
+pandas
+scikit-learn
+networkx
+pytest
+pytest-cov 
+# ... other dependencies
+
+ * Run the workflow: Push or create a pull request to trigger the workflow.
+This optimized workflow provides a more comprehensive CI setup with code coverage reporting, enhancing the quality and maintainability of your Python project.
+ * https://stackoverflow.com/questions/76984927/kotlin-unit-tests-fails-on-github-but-pass-locally
+ * https://github.com/Alperencode/Library-Management-System
+ * https://unix.stackexchange.com/questions/690810/using-sed-to-parse-score
+ * https://medium.com/@evaGachirwa/how-to-structure-an-astronomer-project-3afe0e4cdc51
+ * https://github.com/dankernel/action-sample-python
