@@ -31,14 +31,14 @@ jobs:
       env:
         HF_TOKEN: ${{ secrets.HF_TOKEN }}
       run: |
-        # Install Hugging Face CLI if not already installed
+        # Install Hugging Face CLI
         python -m pip install huggingface_hub
         
         # Login to Hugging Face Hub
         huggingface-cli login --token "${{ secrets.HF_TOKEN }}"
         
         # Create a new repository named 'CyberAttackDetection' under your username
-        huggingface-cli repo create CyberAttackDetection --type model --yes
+        huggingface-cli repo create CyberAttackDetection --type model --yes --organization canstralian
         
         # Upload all files from the 'model_files' directory to the new repository
         huggingface-cli upload ./model_files/* --repo_id canstralian/CyberAttackDetection
