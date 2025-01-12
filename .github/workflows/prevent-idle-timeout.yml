@@ -1,0 +1,14 @@
+name: Prevent Idle Timeout
+
+on:
+  workflow_dispatch:
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Awake Action
+      uses: devpolo/awake-action@v1
+      with:
+        # Optional: Add inputs specific to awake-action if required
