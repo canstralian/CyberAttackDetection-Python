@@ -1,0 +1,1 @@
+"""Core detection and preprocessing modules."""
