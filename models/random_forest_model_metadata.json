@@ -1,0 +1,117 @@
+{
+  "model_type": "random_forest",
+  "data_file": "data/test_dataset.csv",
+  "data_shape": [
+    100,
+    13
+  ],
+  "test_size": 0.2,
+  "hyperparameter_tuning": false,
+  "validation_results": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [],
+    "shape": [
+      100,
+      13
+    ],
+    "columns": [
+      "feature_00",
+      "feature_01",
+      "feature_02",
+      "feature_03",
+      "feature_04",
+      "feature_05",
+      "feature_06",
+      "feature_07",
+      "feature_08",
+      "feature_09",
+      "protocol_type",
+      "service",
+      "label"
+    ],
+    "dtypes": {
+      "feature_00": "float64",
+      "feature_01": "float64",
+      "feature_02": "float64",
+      "feature_03": "float64",
+      "feature_04": "float64",
+      "feature_05": "float64",
+      "feature_06": "float64",
+      "feature_07": "float64",
+      "feature_08": "float64",
+      "feature_09": "float64",
+      "protocol_type": "object",
+      "service": "object",
+      "label": "object"
+    },
+    "missing_values": {
+      "feature_00": 0,
+      "feature_01": 0,
+      "feature_02": 0,
+      "feature_03": 0,
+      "feature_04": 0,
+      "feature_05": 0,
+      "feature_06": 0,
+      "feature_07": 0,
+      "feature_08": 0,
+      "feature_09": 0,
+      "protocol_type": 0,
+      "service": 0,
+      "label": 0
+    },
+    "memory_usage": "24107"
+  },
+  "evaluation_results": {
+    "accuracy": 0.75,
+    "precision": 0.7525252525252526,
+    "recall": 0.75,
+    "f1_score": 0.7493734335839599,
+    "confusion_matrix": [
+      [
+        8,
+        2
+      ],
+      [
+        3,
+        7
+      ]
+    ],
+    "classification_report": "              precision    recall  f1-score   support\n\n      attack       0.73      0.80      0.76        10\n      normal       0.78      0.70      0.74        10\n\n    accuracy                           0.75        20\n   macro avg       0.75      0.75      0.75        20\nweighted avg       0.75      0.75      0.75        20\n",
+    "auc_score": 0.8,
+    "feature_importance": {
+      "feature_08": 0.18016042076879749,
+      "feature_03": 0.15341555378567834,
+      "feature_00": 0.1389365363834253,
+      "feature_07": 0.096349138713875,
+      "feature_04": 0.07728955832067869,
+      "feature_01": 0.0756043872971028,
+      "feature_05": 0.07052390586139434,
+      "feature_09": 0.06454198649319527,
+      "feature_06": 0.060302368574283935,
+      "feature_02": 0.04364081448870484,
+      "protocol_type_tcp": 0.0102319660889518,
+      "service_ssh": 0.010011947871145782,
+      "protocol_type_udp": 0.008241555991509638,
+      "service_http": 0.0064549694223867615,
+      "service_smtp": 0.004294889938870055
+    }
+  },
+  "model_path": "models/random_forest_model.pkl",
+  "training_results": {
+    "model_type": "random_forest",
+    "training_time": 0.09336,
+    "training_samples": 80,
+    "features_count": 15,
+    "cv_scores": [
+      0.75,
+      0.75,
+      0.8125,
+      0.75,
+      0.75
+    ],
+    "cv_mean": 0.7625,
+    "cv_std": 0.024999999999999998,
+    "timestamp": "2025-09-26T13:50:01.470802"
+  }
+}
